@@ -7,6 +7,8 @@ let client;
 
 const initRedisClient = async () => {
   if (!client) {
+    console.log('Checking REDIS_URL:', process.env.REDIS_URL);
+    
     client = redis.createClient(process.env.REDIS_URL);
 
     client.on("connect", () => {
