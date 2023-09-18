@@ -28,20 +28,13 @@ function App() {
           <CssBaseline />
           <Routes>
             <Route path="/" element={<MainLayout />}>
-              {isAuth ? (
-                <>
-                  <Route index path="home" element={<HomePage />} />
-                  <Route path="playlist/:playlistId" element={<PlaylistPage />} />
-                  <Route path="liked-songs" element={<LikedSongsPage />} />
-                  <Route path="profile/:userId" element={<ProfilePage />} />
-                </>
-              ) : (
-                <>
-                  <Route index path="/" element={ isAuth ?<Navigate to="/home" /> : <LandingPage />} />
-                  <Route path="search" element={<SearchPage />} />
-                  <Route path="chart/:chartId" element={<ChartPage />} />
-                </>
-              )}
+              <Route index path="/" element={isAuth ? <Navigate to="/home" /> : <LandingPage />} />
+              <Route path="search" element={<SearchPage />} />
+              <Route path="chart/:chartId" element={<ChartPage />} />
+              <Route path="home" element={isAuth ? <HomePage /> : <Navigate to="/" />} />
+              <Route path="playlist/:playlistId" element={isAuth ? <PlaylistPage /> : <Navigate to="/" />} />
+              <Route path="liked-songs" element={isAuth ? <LikedSongsPage /> : <Navigate to="/" />} />
+              <Route path="profile/:userId" element={isAuth ? <ProfilePage /> : <Navigate to="/" />} />
             </Route>
             <Route path="/login" element={isAuth ? <Navigate to="/home" /> : <LoginPage />} />
             <Route path="/signup" element={isAuth ? <Navigate to="/home" /> : <SignUpPage />} />
