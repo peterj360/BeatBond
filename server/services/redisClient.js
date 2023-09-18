@@ -6,9 +6,7 @@ dotenv.config();
 let client;
 
 const initRedisClient = async () => {
-  if (!client) {
-    console.log('Checking REDIS_URL:', process.env.REDIS_URL);
-    
+  if (!client) {    
     client = redis.createClient({
       url: process.env.REDIS_URL
     });

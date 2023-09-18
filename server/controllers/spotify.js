@@ -1,4 +1,5 @@
 import { getAccessToken } from "../services/spotifyService.js";
+import fetch from 'node-fetch';
 
 export const getPlaylist = async (req, res) => {
     try {
