@@ -23,7 +23,7 @@ Experience the live app [here](https://beatbond.onrender.com)
 - **Deployment**: Render
 
 ## How to Use 📘
-**1.** Sign Up / Login: Securely create your own BeatBond account, or log in if you already have one.
-**2.** Discover Music: Follow and search for users or browse through the Spotify charts.
-**3.** Post Songs: Share your favorite songs and add them to playlists.
-**4.** Interact: Like, comment, and share songs and playlists from other users.
+1. Sign Up / Login: Securely create your own BeatBond account, or log in if you already have one.
+2. Discover Music: Follow and search for users or browse through the Spotify charts.
+3. Post Songs: Share your favorite songs and add them to playlists.
+4. Interact: Like, comment, and share songs and playlists from other users.
