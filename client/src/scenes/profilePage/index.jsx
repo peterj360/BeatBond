@@ -482,14 +482,31 @@ const ProfilePage = () => {
                             Posts
                         </Typography>
                     </Box>   
-                    <Box display="flex" justifyContent="center">
+                    <Box display="flex" sx={ 
+                                posts?.length > 7 ? {
+                                    justifyContent: "center",
+                                } : {
+                                    paddingLeft: isNonMobileScreens ? "1rem" : "7.25%"
+                                }
+                            }>
                         <Box 
-                            display="grid" 
-                            gridTemplateColumns={"repeat(auto-fit, minmax(11rem, 1fr))"} 
-                            gap="0.5rem" 
-                            alignItems="start"
-                            justifyItems="center"
-                            width="100%"
+                            sx={ 
+                                posts?.length > 7 ? {
+                                    display: "grid",
+                                    gridTemplateColumns: "repeat(auto-fit, minmax(11rem, 1fr))",
+                                    gap: "1rem", 
+                                    pt: "1rem",
+                                    alignItems: "start",
+                                    justifyItems: "center",
+                                    width: "100%"
+                                } : {
+                                    display: "flex", 
+                                    justifyContent: "start",
+                                    flexWrap: "wrap",
+                                    pt: "1rem",
+                                    gap: "1rem"
+                                } 
+                            }
                         >
                             {posts.map((post) => (
                                 <Post key={post._id} post={post} user={profile}/>
