@@ -27,19 +27,24 @@ function App() {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <Routes>
-            <Route path="/" element={<MainLayout /> }>
-              <Route index path="/" element={<LandingPage/>} />
-              <Route path="search" element={<SearchPage/> } />
-              <Route path="chart/:chartId" element={<ChartPage/> } />
+            <Route path="/" element={<MainLayout />}>
+              {isAuth ? (
+                <>
+                  <Route index path="home" element={<HomePage />} />
+                  <Route path="playlist/:playlistId" element={<PlaylistPage />} />
+                  <Route path="liked-songs" element={<LikedSongsPage />} />
+                  <Route path="profile/:userId" element={<ProfilePage />} />
+                </>
+              ) : (
+                <>
+                  <Route index path="/" element={ isAuth ?<Navigate to="/home" /> : <LandingPage />} />
+                  <Route path="search" element={<SearchPage />} />
+                  <Route path="chart/:chartId" element={<ChartPage />} />
+                </>
+              )}
             </Route>
-            <Route path="/login" element={<LoginPage/>} />
-            <Route path="/signup" element={<SignUpPage/>} />
-            <Route path="/" element={ isAuth ? <MainLayout /> : <Navigate to="/" /> }>
-              <Route index path="home" element={ <HomePage/> } />
-              <Route path="playlist/:playlistId" element={ <PlaylistPage/> } />
-              <Route path="liked-songs" element={ <LikedSongsPage/> } />
-              <Route path="profile/:userId" element={<ProfilePage/> } />
-            </Route>
+            <Route path="/login" element={isAuth ? <Navigate to="/home" /> : <LoginPage />} />
+            <Route path="/signup" element={isAuth ? <Navigate to="/home" /> : <SignUpPage />} />
           </Routes>
         </ThemeProvider>
       </BrowserRouter>
