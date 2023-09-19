@@ -129,7 +129,7 @@ const SearchPage = () => {
 
     const clearHistory = async () => {
         try {
-            const response = await axios.delete(`${BASE_URL}/search/clear`, {
+            await axios.delete(`${BASE_URL}/search/clear`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     "Content-Type": "application/json"

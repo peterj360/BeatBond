@@ -122,8 +122,8 @@ export const clearRecentSearches = async (req, res) => {
                 console.error("Del Error: ", error);
                 return res.status(500).json({ message: "Redis del error" });
             }
-            return res.status(200).json({ message: "Recent searches cleared" });
         });
+        return res.status(200).json({ message: "Recent searches cleared" });
     } catch (error) {
         console.error("Error clearing recent searches", error);
         return res.status(500).json({ message: error.message });
