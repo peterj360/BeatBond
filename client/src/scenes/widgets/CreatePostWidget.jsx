@@ -97,10 +97,8 @@ const CreatePostWidget = ({ picturePath }) => {
                             width: "100%",
                             backgroundColor: neutralLight,
                             borderRadius: "2rem",
-                            padding: "1rem 2rem"
+                            padding: "0.75rem 2rem"
                         }}
-                        multiline
-                        maxRows={4}
                     />
             </Box>
             {isImage && (

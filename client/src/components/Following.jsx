@@ -126,8 +126,11 @@ const Following = ({ followingId, username, subtitle, userPicturePath, postId, s
             });
             
             handleAddToPlaylistClose();
+            handleClose();
         } catch (error) {
             console.error('Error adding song:', error);
+            handleAddToPlaylistClose();
+            handleClose();
         }
     };
 

@@ -10,6 +10,8 @@ import { MoreHorizOutlined, PlayCircleFilled, PauseCircleFilled, Search, Close, 
 import Song from "components/Song";
 import { pauseSong, playSong, resetCurrentSongTime, setCurrentPlaylist, setCurrentSong, setPlaylists } from "state";
 import Dropzone from "react-dropzone";
+import NavWidget from "scenes/widgets/NavWidget";
+import LibraryWidget from "scenes/widgets/LibraryWidget";
 
 const PlaylistPage = () => {
     const { playlistId } = useParams();
@@ -247,9 +249,19 @@ const PlaylistPage = () => {
     }, [playlist, open]);
 
     return (
-        <Box width="100%" display="flex" padding={isNonMobileScreens ? "0 0 0 1rem" : "0 0 10rem 0"}>
+        <Box width="100%" display={isNonMobileScreens ? "flex" : "column"} padding={isNonMobileScreens ? "0 0 0 1rem" : "0 0 10rem 0"}>
+            <Box
+                display="flex" 
+                flexDirection="column" 
+                gap="1rem" 
+            >
+                {!isNonMobileScreens && (<>
+                    <NavWidget />
+                    <LibraryWidget />
+                </>)}
+            </Box>
             {playlist ? 
-                <WidgetWrapper width="100%" mb="1.35rem">
+                <WidgetWrapper width="100%" mb="1.35rem" mt={isNonMobileScreens ? undefined : "1rem"}>
                     <Box display="flex" flexDirection={ isNonMobileScreens ? "row" : "column" } alignItems={isNonMobileScreens ? "stretch" : "center"} p="1rem 0">
                         <Box display="flex" width="170px" pb="1rem">
                             <div 

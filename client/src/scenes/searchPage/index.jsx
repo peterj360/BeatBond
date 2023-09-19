@@ -14,6 +14,8 @@ import Chart from "components/Chart";
 import RecentSearch from "components/RecentSearch";
 import { setCurrentPlaylist } from "state";
 import { useNavigate } from "react-router-dom";
+import NavWidget from "scenes/widgets/NavWidget";
+import LibraryWidget from "scenes/widgets/LibraryWidget";
 
 const SearchPage = () => {
     const dispatch = useDispatch();
@@ -126,8 +128,18 @@ const SearchPage = () => {
     };
     
     return(
-        <Box display="flex" width="100%" padding={isNonMobileScreens ? "0 0 0 1rem" : "0 0 10rem 0"}>
-            <WidgetWrapper width="100%" mb="1.35rem">
+        <Box display={isNonMobileScreens ? "flex" : "column"} width="100%" padding={isNonMobileScreens ? "0 0 0 1rem" : "0 0 10rem 0"}>
+            <Box
+                display="flex" 
+                flexDirection="column" 
+                gap="1rem" 
+            >
+                {!isNonMobileScreens && (<>
+                    <NavWidget />
+                    <LibraryWidget />
+                </>)}
+            </Box>
+            <WidgetWrapper width="100%" mb="1.35rem" mt={isNonMobileScreens ? undefined : "1rem"}>
                 <FlexBetween width="100%" pb="1rem">
                     <TextField
                         value={searchText}

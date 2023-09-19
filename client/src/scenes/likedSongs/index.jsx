@@ -8,6 +8,8 @@ import FlexBetween from "components/FlexBetween";
 import { PlayCircleFilled, PauseCircleFilled, Search, Close, Favorite } from "@mui/icons-material";
 import Song from "components/Song";
 import { pauseSong, playSong, resetCurrentSongTime, setCurrentPlaylist, setCurrentSong } from "state";
+import NavWidget from "scenes/widgets/NavWidget";
+import LibraryWidget from "scenes/widgets/LibraryWidget";
 
 const LikedSongsPage = () => {
     const dispatch = useDispatch();
@@ -108,9 +110,19 @@ const LikedSongsPage = () => {
     }, [searchText, sortedSongs]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
-        <Box width="100%" display="flex" padding={isNonMobileScreens ? "0 0 0 1rem" : "0 0 10rem 0"}>
+        <Box width="100%" display={isNonMobileScreens ? "flex" : "column"} padding={isNonMobileScreens ? "0 0 0 1rem" : "0 0 10rem 0"}>
+            <Box
+                display="flex" 
+                flexDirection="column" 
+                gap="1rem" 
+            >
+                {!isNonMobileScreens && (<>
+                    <NavWidget />
+                    <LibraryWidget />
+                </>)}
+            </Box>
             {likedSongs ? 
-                <WidgetWrapper width="100%" mb="1.35rem">
+                <WidgetWrapper width="100%" mb="1.35rem" mt={isNonMobileScreens ? undefined : "1rem"}>
                     <Box display="flex" flexDirection={ isNonMobileScreens ? "row" : "column" } alignItems={isNonMobileScreens ? "stretch" : "center"} p="1rem 0">
                         <Box display="flex" pb='1rem'>
                             <Box 

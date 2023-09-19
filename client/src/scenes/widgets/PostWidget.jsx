@@ -1,4 +1,4 @@
-import { ChatBubbleOutlineOutlined, FavoriteBorderOutlined, FavoriteOutlined, ShareOutlined, PlayCircleFilled, PauseCircleFilled, MoreHorizOutlined } from "@mui/icons-material";
+import { ChatBubbleOutlineOutlined, FavoriteBorderOutlined, FavoriteOutlined, PlayCircleFilled, PauseCircleFilled, MoreHorizOutlined } from "@mui/icons-material";
 import { Box, Typography, Divider, IconButton, useTheme, InputBase, InputAdornment, Button, useMediaQuery, Modal, } from "@mui/material";
 import FlexBetween from "components/FlexBetween";
 import Following from "components/Following";
@@ -266,9 +266,6 @@ const PostWidget = ({postId, postUserId, username, song, caption, likes, comment
                     </FlexBetween>
 
                 </FlexBetween>
-                    <IconButton>
-                        <ShareOutlined/>
-                    </IconButton>
             </FlexBetween>
             <Divider />
             <Box 

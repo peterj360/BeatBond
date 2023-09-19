@@ -97,6 +97,10 @@ export const addSong = async (req, res) => {
             return res.status(404).json({ message: 'Song not found' });
         }
 
+        if (playlist.songs.some(existingSongId => existingSongId.toString() === songId.toString())) {
+            return res.status(400).json({ message: "Song is already in the playlist" });
+        }
+
         playlist.songs.push(songId);
         await playlist.save();
 
