@@ -126,6 +126,20 @@ const SearchPage = () => {
     const handleFilterChange = (newFilter) => {
         setFilter(newFilter);
     };
+
+    const clearHistory = async () => {
+        try {
+            const response = await axios.delete(`${BASE_URL}/search/clear`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                }
+            });
+            setRecentSearches([]);
+        } catch (error) {
+            console.error('Failed to clear history', error);
+        }
+    }
     
     return(
         <Box display={isNonMobileScreens ? "flex" : "column"} width="100%" padding={isNonMobileScreens ? "0 0 0 1rem" : "0 0 10rem 0"}>
@@ -351,13 +365,29 @@ const SearchPage = () => {
                 >   
                     {user && recentSearches.length > 0 ? 
                         <Box pb="1rem">
-                            <Typography 
-                                variant="h3"
-                                fontWeight="bold"  
-                                color={backgroundSwitch} 
-                            >
-                                Recent searches
-                            </Typography>
+                            <FlexBetween>
+                                <Typography 
+                                    variant="h3"
+                                    fontWeight="bold"  
+                                    color={backgroundSwitch} 
+                                >
+                                    Recent searches
+                                </Typography>
+                                <Button
+                                    variant="contained"
+                                    size="small"
+                                    sx={{
+                                        textTransform: 'none',
+                                        borderRadius: 5,
+                                        backgroundColor: neutralLight,
+                                        color: backgroundSwitch,
+                                        boxShadow: 'none',  
+                                    }}
+                                    onClick={clearHistory}
+                                >
+                                    Clear history
+                                </Button>
+                            </FlexBetween>
                             <Box 
                                 display="flex" 
                                 sx={ 
