@@ -31,8 +31,12 @@ Experience the live app [here](https://beatbond.onrender.com)
 4. **Interact:** Like, comment, and share songs and playlists from other users.
 
 ## Screenshots
+### Home Page
 ![Home Page](./server/public/assets/BeatBond-HomePage2.PNG)
+### Search Page
 ![Search Page](./server/public/assets/BeatBond-SearchPage.PNG)
 ![Search Page 2](./server/public/assets/BeatBond-SearchPage2.PNG)
+### Profile Page
 ![Profile Page](./server/public/assets/BeatBond-ProfilePage.PNG)
+### Playlist Page
 ![Playlist Page](./server/public/assets/BeatBond-PlaylistPage.PNG)
