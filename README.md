@@ -29,3 +29,10 @@ Experience the live app [here](https://beatbond.onrender.com)
 2. **Discover Music:** Follow and search for users or browse through the Spotify charts.
 3. **Post Songs:** Share your favorite songs and add them to playlists.
 4. **Interact:** Like, comment, and share songs and playlists from other users.
+
+## Screenshots
+![Home Page](./server/public/assets/BeatBond-HomePage2.PNG)
+![Search Page](./server/public/assets/BeatBond-SearchPage.PNG)
+![Search Page 2](./server/public/assets/BeatBond-SearchPage2.PNG)
+![Profile Page](./server/public/assets/BeatBond-ProfilePage.PNG)
+![Playlist Page](./server/public/assets/BeatBond-PlaylistPage.PNG)
