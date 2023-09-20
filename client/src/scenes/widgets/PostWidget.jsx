@@ -22,6 +22,7 @@ const PostWidget = ({postId, postUserId, username, song, caption, likes, comment
 
     const [open, setOpen] = useState(false);
     const [localComments, setLocalComments] = useState(comments);
+    const [showButton, setShowButton] = useState(false);
     const [showComments, setShowComments] = useState(false);
     const [commentText, setCommentText] = useState('');
     const [selectedComment, setSelectedComment] = useState(null);
@@ -192,6 +193,14 @@ const PostWidget = ({postId, postUserId, username, song, caption, likes, comment
         setLocalComments(comments);
     }, [comments]);
 
+    const formatDuration = (duration) => {
+        const totalSeconds = Math.round(duration); 
+        const minutes = Math.floor(totalSeconds / 60);
+        const seconds = totalSeconds % 60;
+        const formattedMinutes = minutes > 0 ? minutes.toString() : minutes.toString().padStart(1, '0');
+        return `${formattedMinutes}:${seconds.toString().padStart(2, '0')}`;
+    }
+
     return (
         <WidgetWrapper mb="2rem">
             <Following followingId={postUserId} username={username} userPicturePath={userPicturePath} postId={postId} songId={song._id}/>
@@ -201,6 +210,8 @@ const PostWidget = ({postId, postUserId, username, song, caption, likes, comment
             {picturePath && (
                 <Box display="flex" justifyContent="center" height="26.6rem">
                     <Box
+                        onMouseEnter={() => setShowButton(true)}
+                        onMouseLeave={() => setShowButton(false)}
                         onClick={() => handlePlay()} 
                         sx={{ 
                             width: "400px",
@@ -229,14 +240,29 @@ const PostWidget = ({postId, postUserId, username, song, caption, likes, comment
                                 position: 'absolute',
                                 top: '50%',
                                 left: '50%',
-                                transform: 'translate(-50%, -50%)'
+                                transform: 'translate(-50%, -50%)',
+                                opacity: showButton ? 1 : 0,
                             }}
                         >
                             {(isPlaying && currentSongPlaying?.filePath === song.filePath) ? 
-                            <PauseCircleFilled sx={{ fontSize: '4.5rem', "&:hover": { fontSize: '5rem', color: primary }}}/> : 
-                            <PlayCircleFilled sx={{ fontSize: '4.5rem', "&:hover": { fontSize: '5rem', color: primary }}}/>
+                            <PauseCircleFilled sx={{ fontSize: '4rem', color: primary }}/> : 
+                            <PlayCircleFilled sx={{ fontSize: '4rem',color: primary }}/>
                             }
                         </IconButton>
+                            <Typography 
+                                color={(isPlaying && currentSongPlaying?.filePath === song.filePath) ? primary : "white"} 
+                                fontWeight="bold"
+                                sx={{
+                                    position: 'absolute',
+                                    bottom: '0.5rem',  
+                                    right: '1rem',
+                                    backgroundColor: 'rgba(0, 0, 0, 0.75)',
+                                    padding: '0.25rem 0.5rem',
+                                    borderRadius: 2,  
+                                }}
+                            >
+                                {formatDuration(song.duration)}
+                            </Typography>
                     </Box>
                 </Box>
                 

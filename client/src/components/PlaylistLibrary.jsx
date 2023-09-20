@@ -58,7 +58,7 @@ const Playlist = ({ playlist, isLikedSongs }) => {
                     <Typography variant="h7" color={main} sx={{whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '100%'}}>
                     { isLikedSongs ? 
                         (`${playlist?.songs?.length ?? 0} ${playlist?.songs?.length === 1 ? 'song' : 'songs'}`) : 
-                        playlist?.user?.username }
+                        ("Playlist • " + playlist?.user?.username) }
                     </Typography>
                 </Box>
             </Box>
