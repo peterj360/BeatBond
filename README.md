@@ -5,6 +5,8 @@ BeatBond is a social media platform tailored for music lovers. Post and share yo
 ## Live Application
 Experience the live app [here](https://beatbond.onrender.com)
 
+![Home Page]([https://github.com/peterj360/BeatBond/issues/1#issue-1904105196](https://user-images.githubusercontent.com/90538684/269160649-deba06ac-44a5-418b-a08e-52307161e63a.PNG))
+
 ## Features 🌟
 - 🎵 Post, share, and listen to songs
 - 📚 Create your own playlists
