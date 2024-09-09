@@ -134,24 +134,27 @@ const UserWidget = ({ userId, picturePath }) => {
     }
 
     return (
-        <WidgetWrapper sx={ isNonMobileScreens ? { position: "fixed", top: "7rem", width: "23rem" } : {}}>
-            <FlexBetween gap="0.5rem" pb="1.1rem">
-                <FlexBetween gap="1rem">
-                    <UserImage image={picturePath} />
+        <WidgetWrapper sx={ isNonMobileScreens ? { width: "100%" } : {}}>
+            <FlexBetween pb="1.1rem">
+                <FlexBetween gap="0.5rem">
+                    <UserImage image={picturePath} size="40px"/>
                     <Box>
                         <Typography 
                             variant="h4"
                             color={neutralDark}
                             fontWeight="500"
+                            fontSize="1rem"
                             sx={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', "&:hover": { color: primaryLight, cursor: "pointer" } }}
                             onClick={() => navigate(`/profile/${userId}`)}
                         >
                             {firstName} {lastName}
                         </Typography>
-                        <Typography color={medium}>{username}</Typography>
+                        <Typography color={medium} fontSize="0.75rem" >{username}</Typography>
                     </Box>
                 </FlexBetween>
-                <IconButton onClick={handleModalOpen} sx={{ backgroundColor: neutralLight, "&:hover": {backgroundColor: primary}, p: "0.6rem" }}>
+                <IconButton 
+                    onClick={handleModalOpen} sx={{ backgroundColor: neutralLight, "&:hover": {backgroundColor: primary}, }}
+                >
                     <ManageAccountsOutlined sx={{ color: neutralDark }}/>    
                 </IconButton>
                 <Modal

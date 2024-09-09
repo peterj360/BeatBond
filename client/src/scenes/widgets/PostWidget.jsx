@@ -208,14 +208,15 @@ const PostWidget = ({postId, postUserId, username, song, caption, likes, comment
                 {song.title}
             </Typography>
             {picturePath && (
-                <Box display="flex" justifyContent="center" height="26.6rem">
+                <Box display="flex" justifyContent="center" height={isNonMobileScreens ? "calc(100vh - 88px - 25.5rem)" : "26.6rem"}>
                     <Box
                         onMouseEnter={() => setShowButton(true)}
                         onMouseLeave={() => setShowButton(false)}
                         onClick={() => handlePlay()} 
                         sx={{ 
-                            width: "400px",
-                            height: "400px",
+                            width: "100%",
+                            maxWidth: "400px",
+                            height: "auto",
                             position: 'relative', 
                             cursor: 'pointer', 
                             borderRadius: "0.75rem",
@@ -249,7 +250,7 @@ const PostWidget = ({postId, postUserId, username, song, caption, likes, comment
                             <PlayCircleFilled sx={{ fontSize: '4rem',color: primary }}/>
                             }
                         </IconButton>
-                            <Typography 
+                            {/* <Typography 
                                 color={(isPlaying && currentSongPlaying?.filePath === song.filePath) ? primary : "white"} 
                                 fontWeight="bold"
                                 sx={{
@@ -259,17 +260,31 @@ const PostWidget = ({postId, postUserId, username, song, caption, likes, comment
                                     backgroundColor: 'rgba(0, 0, 0, 0.75)',
                                     padding: '0.25rem 0.5rem',
                                     borderRadius: 2,  
+                                    zIndex: 1,
                                 }}
                             >
                                 {formatDuration(song.duration)}
-                            </Typography>
+                            </Typography> */}
                     </Box>
                 </Box>
                 
             )}
-            <Typography color={main} sx={{ mt: "0.5rem"}}>
-                {caption}
-            </Typography>
+            <FlexBetween>
+                <Typography color={main} sx={{ mt: "0.5rem"}}>
+                    {caption}
+                </Typography>
+                <Typography 
+                    color={(isPlaying && currentSongPlaying?.filePath === song.filePath) ? primary : "white"} 
+                    fontWeight="bold"
+                    sx={{
+                        backgroundColor: 'rgba(0, 0, 0, 0.25)',
+                        padding: '0.25rem 0.5rem',
+                        borderRadius: 2,  
+                    }}
+                >
+                    {formatDuration(song.duration)}
+                </Typography>
+            </FlexBetween>
             
             <FlexBetween m="0.2rem 0rem">
                 <FlexBetween gap="1rem">

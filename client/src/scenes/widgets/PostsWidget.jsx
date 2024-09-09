@@ -136,10 +136,10 @@ const PostsWidget = ({ userId, isProfile = false }) => {
                     />
                 )
             ) : isLoading ? 
-                <WidgetWrapper height="44.2rem" sx={{ display: "flex",justifyContent: "center", alignItems: "center" }}>
+                <WidgetWrapper height="77vh" sx={{ display: "flex",justifyContent: "center", alignItems: "center" }}>
                     <CircularProgress />
                 </WidgetWrapper> :
-                <WidgetWrapper height="44.2rem" mb="2rem">
+                <WidgetWrapper height="77vh" mb="2rem">
                     {userId ? <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center">
                         <Box>
                             <Typography variant="h2" fontWeight="500" color={neutralDark} sx={{whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', padding: "0 1rem"}}>

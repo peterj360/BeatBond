@@ -103,7 +103,7 @@ const LibraryWidget = () => {
     }, [searchText, sortedPlaylists]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return(
-        <WidgetWrapper sx={ isNonMobileScreens ? { position: "fixed", top: "15rem", width: "23rem" } : {} }>
+        <WidgetWrapper sx={ isNonMobileScreens ? { width: "100%" } : {} }>
             <FlexBetween pb="0.5rem">
                 <Box display="flex" justifyContent="center" alignItems="center" gap="0.5rem">
                     <LibraryMusic sx={{ fontSize: "1.5rem", color: neutralDark}}/>
@@ -163,7 +163,7 @@ const LibraryWidget = () => {
                     </FormControl>
                 </FlexBetween>
                 <Divider />
-                <Box pt="1rem" sx={{ height: '27.2rem', overflowY: 'auto', '&::-webkit-scrollbar': {
+                <Box pt="1rem" sx={{ height: isNonMobileScreens ? "calc(100vh - 88px - 25rem)": "27.2rem", minHeight: "10rem", overflowY: 'auto', '&::-webkit-scrollbar': {
                                 width: '0.5em'
                             },
                             '&::-webkit-scrollbar-thumb': {
@@ -174,7 +174,7 @@ const LibraryWidget = () => {
                         <Playlist key={playlist?._id} playlist={playlist} isLikedSongs={false}/>
                     ))}
                 </Box>
-            </> : <Box pt="1rem" height="30.9rem">
+            </> : <Box pt="1rem" height="53.5vh">
                 <Box sx={{backgroundColor: backgroundMedium, borderRadius: "0.75rem", padding: "1rem"}}>
                     <Box>
                         <Typography variant="h5" fontWeight="bold" color={backgroundSwitch} sx={{whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>
