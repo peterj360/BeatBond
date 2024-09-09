@@ -187,7 +187,7 @@ const ProfilePage = () => {
     }, [profile, open]);
 
     return (
-        <Box width="100%" display="flex" padding={isNonMobileScreens ? "0 0 0 1rem" : "0 0 10rem 0"}>
+        <Box width="100%" display="flex" padding={isNonMobileScreens ? "0 0 0 1rem" : "1rem 0 10rem 0"}>
             { profile ?
             <WidgetWrapper width="100%" mb="1.35rem">
                 <Box display="flex" flexDirection={ isNonMobileScreens ? "row" : "column" } alignItems={isNonMobileScreens ? "stretch" : "center"} p="1rem 0">

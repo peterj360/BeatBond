@@ -13,33 +13,32 @@ const HomePage = () => {
 
     const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
 
+    
     return (
-        <Box display={isNonMobileScreens ? "flex" : "column"} width="100%" padding={isNonMobileScreens ? "0 0 0 1rem" : "0 0 40% 0"}>
+        <Box display={isNonMobileScreens ? "flex" : "column"} width="100%" padding={isNonMobileScreens ? "0 0 0 0" : "0 0 0 0"}>
                 {user && <Box
                     display="flex" 
-                    flexDirection="column" 
-                    order={3}
-                    width={isNonMobileScreens ? "23rem" : "100%"}
+                    flexDirection="column"
+                    gap={isNonMobileScreens ? "1rem" : "1rem"}
                 >
-                    <Box 
+                    <Box
+                        position={isNonMobileScreens ? "fixed" : "relative"}
+                        top={isNonMobileScreens ? "7rem" : "auto"} 
+                        right={isNonMobileScreens ? "2rem" : "auto"}
                         display="flex" 
                         flexDirection="column" 
-                        order={3} 
                         gap="1rem"
-                        width={isNonMobileScreens ? "23rem" : "100%"}
+                        width={isNonMobileScreens ? "20vw" : "100%"}
+                        pt={isNonMobileScreens ? "0rem" : "1rem"}
                     >
-                        {!isNonMobileScreens && (<>
-                            <NavWidget />
-                            <LibraryWidget />
-                        </>)}
                         <UserWidget userId={_id} picturePath={picturePath}/>
                         <CreatePostWidget picturePath={picturePath} />
                     </Box>
                 </Box>}
                 <Box pr={isNonMobileScreens ? "1rem": ""}
+                    mr={isNonMobileScreens && _id ? "20vw" : "0"}
                     width={isNonMobileScreens ? "100%" : "100%" } 
                     mt={isNonMobileScreens ? undefined : "2rem"} 
-                    order={2}
                 >
                     <PostsWidget userId={_id}/>
                 </Box>

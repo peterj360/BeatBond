@@ -255,10 +255,6 @@ const PlaylistPage = () => {
                 flexDirection="column" 
                 gap="1rem" 
             >
-                {!isNonMobileScreens && (<>
-                    <NavWidget />
-                    <LibraryWidget />
-                </>)}
             </Box>
             {playlist ? 
                 <WidgetWrapper width="100%" mb="1.35rem" mt={isNonMobileScreens ? undefined : "1rem"}>

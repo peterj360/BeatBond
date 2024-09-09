@@ -73,115 +73,119 @@ const CreatePostWidget = ({ picturePath }) => {
     };
 
     return (
-        <WidgetWrapper sx={ isNonMobileScreens ? { position: "fixed", top: "23rem", width: "23rem" } : {} }>
-            <FlexBetween gap="1.5rem">
-                <UserImage image={picturePath}/>
-                <InputBase 
-                    placeholder="Title your song..."
-                    onChange={(e) => setTitle(e.target.value)}
-                    value={title}
-                    sx={{
-                        width: "100%",
-                        backgroundColor: neutralLight,
-                        borderRadius: "2rem",
-                        padding: "0.75rem 2rem"
-                    }}
-                />
-            </FlexBetween>
-            <Box pt="0.5rem">
-                <InputBase 
-                        placeholder="Write a caption..."
-                        onChange={(e) => setCaption(e.target.value)}
-                        value={caption}
-                        sx={{
-                            width: "100%",
-                            backgroundColor: neutralLight,
-                            borderRadius: "2rem",
-                            padding: "0.75rem 2rem"
-                        }}
-                    />
-            </Box>
-            {isImage && (
-                <Box border={`1px solid ${medium}`} borderRadius="5px" mt="1rem" p="1rem">
-                    <Dropzone acceptedFiles=".jpg,.jpeg,.png" multiple={false} onDrop={(acceptedFiles) => setImage(acceptedFiles[0])}>
-                        {({ getRootProps, getInputProps }) => (
-                            <FlexBetween>
-                                <Box {...getRootProps()} border={`2px dashed ${primary}`} p="0.25rem 1rem" sx={{"&:hover": {cursor: "pointer"}}} width="100%">
-                                    <input {...getInputProps()}/>
-                                    {!image ? (
-                                        <p>Add Image Here</p>
-                                    ) : (
-                                        <FlexBetween>
-                                            <Typography>{image.name}</Typography>
-                                            <EditOutlined/>
-                                        </FlexBetween>
-                                    )}
-                                </Box>
-                                {image && (
-                                    <IconButton onClick={() => setImage(null)} sx={{ width: "15%"}}>
-                                        <DeleteOutlined />
-                                    </IconButton>
-                                )}
-                            </FlexBetween>
-                        )}
-                    </Dropzone>
+        <WidgetWrapper sx={ isNonMobileScreens ? { width: "100%", height: "calc(100vh - 88px - 22.75rem)" } : {} }>
+            <Box 
+                display="flex" 
+                flexDirection="column" 
+                justifyContent="space-evenly" 
+                height="100%" 
+                sx={{ 
+                    overflowY: 'auto',
+                    '&::-webkit-scrollbar': {
+                        width: '0.5em'
+                    },
+                    '&::-webkit-scrollbar-thumb': {
+                        backgroundColor: 'rgba(0,0,0,.3)',
+                    }, 
+                }}
+            >
+                <Box>
+                    <FlexBetween gap="1rem">
+                        <UserImage image={picturePath}/>
+                        <InputBase 
+                            placeholder="Title your song..."
+                            onChange={(e) => setTitle(e.target.value)}
+                            value={title}
+                            sx={{
+                                width: "100%",
+                                backgroundColor: neutralLight,
+                                borderRadius: "2rem",
+                                padding: "0.75rem 2rem"
+                            }}
+                        />
+                    </FlexBetween>
+                    <Box pt="0.5rem">
+                        <InputBase 
+                                placeholder="Write a caption..."
+                                onChange={(e) => setCaption(e.target.value)}
+                                value={caption}
+                                sx={{
+                                    width: "100%",
+                                    backgroundColor: neutralLight,
+                                    borderRadius: "2rem",
+                                    padding: "0.75rem 2rem"
+                                }}
+                            />
+                    </Box>
                 </Box>
-            )}
-
-            {isAudio && (
-                <Box border={`1px solid ${medium}`} borderRadius="5px" mt="1rem" p="1rem">
-                    <Dropzone acceptedFiles=".mp3,.wav,.aac,.m4a" multiple={false} onDrop={(acceptedFiles) => setAudio(acceptedFiles[0])}>
-                        {({ getRootProps, getInputProps }) => (
-                            <FlexBetween>
-                                <Box {...getRootProps()} border={`2px dashed ${primary}`} p="0.25rem 1rem" sx={{"&:hover": {cursor: "pointer"}}} width="100%">
-                                    <input {...getInputProps()}/>
-                                    {!audio ? (
-                                        <p>Add Audio Here</p>
-                                    ) : (
-                                        <FlexBetween>
-                                            <Typography>{audio.name}</Typography>
-                                            <EditOutlined/>
-                                        </FlexBetween>
+                <Divider sx={{ margin: "1rem 0"}}/>
+                <Box
+                    display="flex" 
+                    flexDirection="column" 
+                    justifyContent="space-evenly"
+                    gap="1.25rem"
+                >
+                    <Box border={`1px solid ${medium}`} borderRadius="1rem">
+                        <Dropzone acceptedFiles=".jpg,.jpeg,.png" multiple={false} onDrop={(acceptedFiles) => setImage(acceptedFiles[0])}>
+                            {({ getRootProps, getInputProps }) => (
+                                <FlexBetween>
+                                    <Box {...getRootProps()} p="0.25rem 1rem" sx={{"&:hover": {cursor: "pointer"}}} width="100%">
+                                        <input {...getInputProps()}/>
+                                        {!image ? (
+                                            <Box display="flex" justifyContent="center" alignItems="center" gap="1rem">
+                                                <ImageOutlined sx={{ color: mediumMain}}/>
+                                                <p>Add Image Here</p>
+                                            </Box>
+                                        ) : (
+                                            <FlexBetween>
+                                                <Typography>{image.name}</Typography>
+                                                <EditOutlined/>
+                                            </FlexBetween>
+                                        )}
+                                    </Box>
+                                    {image && (
+                                        <IconButton onClick={() => setImage(null)} sx={{ width: "15%"}}>
+                                            <DeleteOutlined />
+                                        </IconButton>
                                     )}
-                                </Box>
-                                {audio && (
-                                    <IconButton onClick={() => setAudio(null)} sx={{ width: "15%"}}>
-                                        <DeleteOutlined />
-                                    </IconButton>
-                                )}
-                            </FlexBetween>
-                        )}
-                    </Dropzone>
+                                </FlexBetween>
+                            )}
+                        </Dropzone>
+                    </Box>
+                    <Box border={`1px solid ${medium}`} borderRadius="1rem">
+                        <Dropzone acceptedFiles=".mp3,.wav,.aac,.m4a" multiple={false} onDrop={(acceptedFiles) => setAudio(acceptedFiles[0])}>
+                            {({ getRootProps, getInputProps }) => (
+                                <FlexBetween>
+                                    <Box {...getRootProps()} p="0.25rem 1rem" sx={{"&:hover": {cursor: "pointer"}}} width="100%">
+                                        <input {...getInputProps()}/>
+                                        {!audio ? (
+                                            <Box display="flex" alignItems="center" justifyContent="center" gap="1rem">
+                                                <AudioFileOutlined sx={{ color: mediumMain}}/>
+                                                <p>Add Audio Here</p>
+                                            </Box>
+                                        ) : (
+                                            <FlexBetween>
+                                                <Typography>{audio.name}</Typography>
+                                                <EditOutlined/>
+                                            </FlexBetween>
+                                        )}
+                                    </Box>
+                                    {audio && (
+                                        <IconButton onClick={() => setAudio(null)} sx={{ width: "15%"}}>
+                                            <DeleteOutlined />
+                                        </IconButton>
+                                    )}
+                                </FlexBetween>
+                            )}
+                        </Dropzone>
+                    </Box>
                 </Box>
-            )}
-
-            <Divider sx={{ margin: "1.25rem 0"}}/>
-            
-            <Box display="flex" justifyContent="space-around" alignItems="center">
-                <FlexBetween gap="0.25rem" onClick={() => setIsImage(!isImage)}>
-                    <ImageOutlined sx={{ color: mediumMain}}/>
-                    <Typography color={mediumMain} sx={{ "&:hover": { cursor: "pointer", color: medium } }}>
-                        Image
-                    </Typography>
-                </FlexBetween>
-                {isNonMobileScreens ? (
-                    <>
-                        <FlexBetween gap="0.25rem" onClick={() => setIsAudio(!isAudio)}>
-                            <AudioFileOutlined sx={{ color: mediumMain}}/>
-                            <Typography color={mediumMain} sx={{ "&:hover": { cursor: "pointer", color: medium } }}>
-                                Audio
-                            </Typography>
-                        </FlexBetween>
-
-                    </>
-                ) : (<FlexBetween gap="0.25rem">
-                        <MoreHorizOutlined sx={{ color: mediumMain}} />
-                     </FlexBetween>
-                )}
-
-                <Button type="button" disabled={isDisabled} onClick={handlePost} sx={{ color: alt, backgroundColor: isDisabled ? neutralLight : primary, borderRadius: "3rem" }}>
-                    POST
-                </Button>
+                <Divider sx={{ margin: "1rem 0"}}/>
+                <Box display="flex" justifyContent="center" alignItems="center">
+                    <Button type="button" disabled={isDisabled} onClick={handlePost} sx={{ color: alt, backgroundColor: isDisabled ? neutralLight : primary, borderRadius: "3rem" }}>
+                        POST
+                    </Button>
+                </Box>
             </Box>
         </WidgetWrapper>
     );

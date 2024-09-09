@@ -148,10 +148,6 @@ const SearchPage = () => {
                 flexDirection="column" 
                 gap="1rem" 
             >
-                {!isNonMobileScreens && (<>
-                    <NavWidget />
-                    <LibraryWidget />
-                </>)}
             </Box>
             <WidgetWrapper width="100%" mb="1.35rem" mt={isNonMobileScreens ? undefined : "1rem"}>
                 <FlexBetween width="100%" pb="1rem">

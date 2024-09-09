@@ -116,10 +116,10 @@ const LikedSongsPage = () => {
                 flexDirection="column" 
                 gap="1rem" 
             >
-                {!isNonMobileScreens && (<>
+                {/* {!isNonMobileScreens && (<>
                     <NavWidget />
                     <LibraryWidget />
-                </>)}
+                </>)} */}
             </Box>
             {likedSongs ? 
                 <WidgetWrapper width="100%" mb="1.35rem" mt={isNonMobileScreens ? undefined : "1rem"}>
