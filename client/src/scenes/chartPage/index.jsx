@@ -37,9 +37,9 @@ const ChartPage = () => {
     }, [chartId]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
-        <Box width="100%" display="flex" padding={isNonMobileScreens ? "0 0 0 1rem" : "1rem 0 10rem 0"}>
+        <Box width="100%" height="100%" display={isNonMobileScreens ? "flex" : "column"}>
             { chart ?
-            <WidgetWrapper width="100%" mb="1.35rem">
+            <WidgetWrapper width="100%" height="100%" mt={isNonMobileScreens ? "0rem" : "1rem"} display="flex" flexDirection="column">
                 <Box display="flex" flexDirection={ isNonMobileScreens ? "row" : "column" } alignItems={isNonMobileScreens ? "stretch" : "center"} p="1rem 0">
                     <Box display="flex" width="170px" pb="1rem">
                         <img 

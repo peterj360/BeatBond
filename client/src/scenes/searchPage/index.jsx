@@ -142,14 +142,8 @@ const SearchPage = () => {
     }
     
     return(
-        <Box display={isNonMobileScreens ? "flex" : "column"} width="100%" padding={isNonMobileScreens ? "0 0 0 1rem" : "0 0 10rem 0"}>
-            <Box
-                display="flex" 
-                flexDirection="column" 
-                gap="1rem" 
-            >
-            </Box>
-            <WidgetWrapper width="100%" mb="1.35rem" mt={isNonMobileScreens ? undefined : "1rem"}>
+        <Box display="flex" width="100%" height={isNonMobileScreens ? "100%" : "auto"} mb={isNonMobileScreens? "0" :"12rem"}>
+            <WidgetWrapper width="100%" mt={isNonMobileScreens ? "0rem" : "1rem"} display="flex" flexDirection="column">
                 <FlexBetween width="100%" pb="1rem">
                     <TextField
                         value={searchText}

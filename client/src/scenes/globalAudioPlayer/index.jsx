@@ -267,13 +267,13 @@ const GlobalAudioPlayer = () => {
             </Box>
         ) : <Box 
                 sx={{ 
-                    position: 'fixed',
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    width: '100%',
+                    display: "flex", 
+                    flexDirection: "column",
+                    width: '100vw',
                     backgroundColor: background,
-                    padding: '0 1rem'
+                    padding: '0 1rem',
+                    boxSizing: 'border-box',
+                    overflowX: 'hidden',
                 }}
             >
                 <Box display="flex" justifyContent="left" alignItems="center" gap="1rem" p="1rem 1rem"> 

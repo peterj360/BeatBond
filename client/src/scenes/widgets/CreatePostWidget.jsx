@@ -73,20 +73,25 @@ const CreatePostWidget = ({ picturePath }) => {
     };
 
     return (
-        <WidgetWrapper sx={ isNonMobileScreens ? { width: "100%", height: "calc(100vh - 88px - 22.75rem)" } : {} }>
+        <WidgetWrapper sx={ isNonMobileScreens ? { width: "100%", height: "100%", overflow: "hidden" } : {} }>
             <Box 
                 display="flex" 
                 flexDirection="column" 
-                justifyContent="space-evenly" 
+                justifyContent="space-between" 
                 height="100%" 
                 sx={{ 
-                    overflowY: 'auto',
+                    overflowY: 'auto', 
+                    overflowX: "auto",
                     '&::-webkit-scrollbar': {
-                        width: '0.5em'
+                        width: '0.5em',
+                        height: '0.5em'
                     },
                     '&::-webkit-scrollbar-thumb': {
                         backgroundColor: 'rgba(0,0,0,.3)',
-                    }, 
+                    },
+                    '&::-webkit-scrollbar-corner': {
+                        backgroundColor: 'transparent'
+                    }
                 }}
             >
                 <Box>

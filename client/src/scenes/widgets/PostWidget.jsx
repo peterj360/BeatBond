@@ -202,13 +202,13 @@ const PostWidget = ({postId, postUserId, username, song, caption, likes, comment
     }
 
     return (
-        <WidgetWrapper mb="2rem">
+        <WidgetWrapper mb="2rem" height={isNonMobileScreens ? "100%" : undefined} overflow={isNonMobileScreens ? "hidden" : "auto"} overflowY={!isNonMobileScreens ? "auto" : ""}>
             <Following followingId={postUserId} username={username} userPicturePath={userPicturePath} postId={postId} songId={song._id}/>
             <Typography color={main} sx={{ mt: "1rem"}}>
                 {song.title}
             </Typography>
             {picturePath && (
-                <Box display="flex" justifyContent="center" height={isNonMobileScreens ? "calc(100vh - 88px - 25.5rem)" : "26.6rem"}>
+                <Box display="flex" justifyContent="center" height={!isNonMobileScreens ? "25rem" : undefined}>
                     <Box
                         onMouseEnter={() => setShowButton(true)}
                         onMouseLeave={() => setShowButton(false)}

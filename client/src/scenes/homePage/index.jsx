@@ -15,30 +15,33 @@ const HomePage = () => {
 
     
     return (
-        <Box display={isNonMobileScreens ? "flex" : "column"} width="100%" padding={isNonMobileScreens ? "0 0 0 0" : "0 0 0 0"}>
+        <Box display="flex" flexDirection={isNonMobileScreens ? "row": "column"} width="100%" height="100%">
                 {user && <Box
                     display="flex" 
                     flexDirection="column"
-                    gap={isNonMobileScreens ? "1rem" : "1rem"}
+                    gap="1rem"
                 >
                     <Box
                         position={isNonMobileScreens ? "fixed" : "relative"}
-                        top={isNonMobileScreens ? "7rem" : "auto"} 
+                        top={isNonMobileScreens ? "6rem" : "auto"} 
                         right={isNonMobileScreens ? "2rem" : "auto"}
                         display="flex" 
                         flexDirection="column" 
                         gap="1rem"
-                        width={isNonMobileScreens ? "20vw" : "100%"}
+                        width={isNonMobileScreens ? "17vw" : "100%"}
+                        height={isNonMobileScreens ? "calc(100vh - 88px - 7rem)" : "100%"}
                         pt={isNonMobileScreens ? "0rem" : "1rem"}
+                        overflow="hidden"
                     >
                         <UserWidget userId={_id} picturePath={picturePath}/>
                         <CreatePostWidget picturePath={picturePath} />
                     </Box>
                 </Box>}
                 <Box pr={isNonMobileScreens ? "1rem": ""}
-                    mr={isNonMobileScreens && _id ? "20vw" : "0"}
-                    width={isNonMobileScreens ? "100%" : "100%" } 
-                    mt={isNonMobileScreens ? undefined : "2rem"} 
+                    mr={isNonMobileScreens && _id ? "17vw" : "0"}
+                    width={"100%" } 
+                    mt={isNonMobileScreens ? "0rem" : "2rem"} 
+                    height="100%"
                 >
                     <PostsWidget userId={_id}/>
                 </Box>

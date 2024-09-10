@@ -35,7 +35,7 @@ const NavWidget = () => {
     };
 
     return(
-        <WidgetWrapper sx={ isNonMobileScreens ? { width: "100%" } : {}}>
+        <WidgetWrapper sx={ isNonMobileScreens ? { width: "100%", minHeight: "7.1rem" } : {}}>
             <Box display="flex" flexDirection="column" gap="1rem" pb="0.75rem" width="100%">
                 <Box 
                     display="flex" 

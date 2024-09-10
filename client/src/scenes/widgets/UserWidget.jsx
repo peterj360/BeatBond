@@ -134,7 +134,7 @@ const UserWidget = ({ userId, picturePath }) => {
     }
 
     return (
-        <WidgetWrapper sx={ isNonMobileScreens ? { width: "100%" } : {}}>
+        <WidgetWrapper sx={ isNonMobileScreens ? { width: "100%",  } : {}}>
             <FlexBetween pb="1.1rem">
                 <FlexBetween gap="0.5rem">
                     <UserImage image={picturePath} size="40px"/>

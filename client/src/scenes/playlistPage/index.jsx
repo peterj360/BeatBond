@@ -249,15 +249,9 @@ const PlaylistPage = () => {
     }, [playlist, open]);
 
     return (
-        <Box width="100%" display={isNonMobileScreens ? "flex" : "column"} padding={isNonMobileScreens ? "0 0 0 1rem" : "0 0 10rem 0"}>
-            <Box
-                display="flex" 
-                flexDirection="column" 
-                gap="1rem" 
-            >
-            </Box>
+        <Box display="flex" width="100%" height={isNonMobileScreens ? "100%" : "auto"} mb={isNonMobileScreens? "0" :"12rem"} overflow="hidden">
             {playlist ? 
-                <WidgetWrapper width="100%" mb="1.35rem" mt={isNonMobileScreens ? undefined : "1rem"}>
+                <WidgetWrapper width="100%" mt={isNonMobileScreens ? "0rem" : "1rem"} display="flex" flexDirection="column" overflow="hidden">
                     <Box display="flex" flexDirection={ isNonMobileScreens ? "row" : "column" } alignItems={isNonMobileScreens ? "stretch" : "center"} p="1rem 0">
                         <Box display="flex" width="170px" pb="1rem">
                             <div 

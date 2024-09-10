@@ -1,4 +1,4 @@
-import { Box, useMediaQuery } from "@mui/material";
+import { Box, useMediaQuery, useTheme } from "@mui/material";
 import LibraryWidget from "scenes/widgets/LibraryWidget";
 import GlobalAudioPlayer from "scenes/globalAudioPlayer";
 import { Outlet } from "react-router-dom";
@@ -20,6 +20,10 @@ const MainLayout = () => {
     const token = useSelector((state) => state.token);
 
     const BASE_URL = process.env.REACT_APP_BEATBOND_API_BASE_URL;
+    // const { palette } = useTheme();
+    // const scroll = palette.neutral.light
+
+
 
     const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
 
@@ -57,33 +61,43 @@ const MainLayout = () => {
             console.error("Error fetching playlists:", error);
         }
     }
-    console.log(_id)
+
     return (
-        <Box height="100vh" display="flex" flexDirection="column">
-            <Box pb="5rem">
+        <Box width="100vw" height="100vh" minHeight="600px" display="flex" flexDirection="column" overflowY="auto">
+            <Box mb="6rem">
                 <Navbar />
             </Box>
-            <Box width="100vw" padding={isNonMobileScreens ? "2rem 2rem" : "2rem 2rem"} display={isNonMobileScreens ? "flex" : "block"} justifyContent="space-between" flex="1">
-                {isNonMobileScreens ? (
-                    <Box position="fixed" top="7rem" left="2rem" display="flex" flexDirection="column" width="20vw">
-                        <Box display="flex" flexDirection="column" width="100%" gap="1rem">
-                            <NavWidget />
-                            <LibraryWidget />
-                        </Box>
-                    </Box>
-                ): (
-                    <Box display="flex" flexDirection="column" width="100%" gap="1rem">
+            <Box display="flex" flexDirection={isNonMobileScreens ? "row" : "column"} width="100vw" height={isNonMobileScreens ? "calc(100vh - 88px - 7rem)" : "100%"} padding={"0rem 2rem"} gap="1rem">
+                <Box 
+                    display="flex" 
+                    flexDirection="column" 
+                    width={isNonMobileScreens ? "17vw" : "100%"} 
+                    height={isNonMobileScreens ? "calc(100vh - 88px - 7rem)" : "calc(100vh - 176px - 7rem)"}
+                    position={isNonMobileScreens ? "fixed" : "relative"} 
+                    gap="1rem">
+                    <Box flexShrink={0} sx={{ height: "auto" }}>
                         <NavWidget />
+                    </Box>
+
+                    <Box flexGrow={1} overflow="hidden">
                         <LibraryWidget />
                     </Box>
-                )}
-                <Box ml={isNonMobileScreens ? "21vw" : "0"} width="100%" height="100%">
+                </Box>
+                <Box 
+                    display="flex" 
+                    flexDirection="column" 
+                    width="100%" 
+                    height="100%" 
+                    overflow={user ? undefined : "hidden"} 
+                    gap="1rem" 
+                    ml={isNonMobileScreens ? "18vw": "0"}
+                >
                     <Outlet />
                 </Box>
             </Box>
             <Box
-                height="88px"  
-                flexShrink={0}
+                display="flex"
+                height={isNonMobileScreens ? "88px": "175px" }
                 sx={{
                     position: 'fixed',
                     bottom: 0,

@@ -103,108 +103,121 @@ const LibraryWidget = () => {
     }, [searchText, sortedPlaylists]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return(
-        <WidgetWrapper sx={ isNonMobileScreens ? { width: "100%" } : {} }>
-            <FlexBetween pb="0.5rem">
-                <Box display="flex" justifyContent="center" alignItems="center" gap="0.5rem">
-                    <LibraryMusic sx={{ fontSize: "1.5rem", color: neutralDark}}/>
-                    <Typography variant="h4" fontWeight="500" color={neutralDark} sx={{whiteSpace: 'nowrap'}}>
-                        Your Library
-                    </Typography>
-                </Box>
-                <Tooltip 
-                    title={<Typography sx={{ fontSize: '16px' }}>Create a new playlist</Typography>} 
-                    placement="top"
-                >
-                    <IconButton onClick={handleCreatePlaylist}>
-                        <Add sx={{ fontSize: "1.5rem", color: neutralDark }} />
-                    </IconButton>
-                </Tooltip>
-            </FlexBetween>
-            <Divider />
-            {user ? <>
-                <FlexBetween p="0.5rem 0" gap="1rem">
-                    { showSearch || searchText ? 
-                        <InputBase
-                            value={searchText}
-                            onChange={(e) => setSearchText(e.target.value)}
-                            onBlur={() => setShowSearch(false)}
-                            autoFocus
-                            placeholder="Search in Your Library"
-                            sx={{ backgroundColor: neutralLight, borderRadius: 2, padding: "5px 5px", maxWidth: '180px'}}
-                            startAdornment={
-                                <InputAdornment position="start" sx={{ paddingLeft: "5px"}}>
-                                    <Search />
-                                </InputAdornment>
-                            }
-                            endAdornment={
-                                <InputAdornment position="end">
-                                    {searchText ? <IconButton onClick={() => {setSearchText('')}}>
-                                        <Close />
-                                    </IconButton> : <></>}
-                                </InputAdornment>
-                            }
-                        />
-                        :
-                        <IconButton onClick={() => setShowSearch(true)}>
-                            <Search  />
+        <Box width="100%" height="100%" display={isNonMobileScreens ? "flex" : "column"}>
+            <WidgetWrapper width="100%" height="100%" display="flex" flexDirection="column">
+                <FlexBetween pb="0.5rem">
+                    <Box display="flex" justifyContent="center" alignItems="center" gap="0.5rem">
+                        <LibraryMusic sx={{ fontSize: "1.5rem", color: neutralDark}}/>
+                        <Typography variant="h4" fontWeight="500" color={neutralDark} sx={{whiteSpace: 'nowrap'}}>
+                            Your Library
+                        </Typography>
+                    </Box>
+                    <Tooltip 
+                        title={<Typography sx={{ fontSize: '16px' }}>Create a new playlist</Typography>} 
+                        placement="top"
+                    >
+                        <IconButton onClick={handleCreatePlaylist}>
+                            <Add sx={{ fontSize: "1.5rem", color: neutralDark }} />
                         </IconButton>
-                    }
-                    <FormControl variant="standard" sx={{ m: 1 }} size="small">
-                        <Select
-                            labelId="demo-simple-select-standard-label"
-                            id="demo-simple-select-standard" 
-                            value={sort}
-                            onChange={handleChange}
-                            label="sort"
-                        >
-                            <MenuItem value="Date added">Date added</MenuItem>
-                            <MenuItem value="Name">Name</MenuItem>
-                        </Select>
-                    </FormControl>
+                    </Tooltip>
                 </FlexBetween>
                 <Divider />
-                <Box pt="1rem" sx={{ height: isNonMobileScreens ? "calc(100vh - 88px - 25rem)": "27.2rem", minHeight: "10rem", overflowY: 'auto', '&::-webkit-scrollbar': {
-                                width: '0.5em'
+                {user ? <>
+                    <FlexBetween p="0.5rem 0" gap="1rem">
+                        { showSearch || searchText ? 
+                            <InputBase
+                                value={searchText}
+                                onChange={(e) => setSearchText(e.target.value)}
+                                onBlur={() => setShowSearch(false)}
+                                autoFocus
+                                placeholder="Search in Your Library"
+                                sx={{ backgroundColor: neutralLight, borderRadius: 2, padding: "5px 5px", maxWidth: '180px'}}
+                                startAdornment={
+                                    <InputAdornment position="start" sx={{ paddingLeft: "5px"}}>
+                                        <Search />
+                                    </InputAdornment>
+                                }
+                                endAdornment={
+                                    <InputAdornment position="end">
+                                        {searchText ? <IconButton onClick={() => {setSearchText('')}}>
+                                            <Close />
+                                        </IconButton> : <></>}
+                                    </InputAdornment>
+                                }
+                            />
+                            :
+                            <IconButton onClick={() => setShowSearch(true)}>
+                                <Search  />
+                            </IconButton>
+                        }
+                        <FormControl variant="standard" sx={{ m: 1 }} size="small">
+                            <Select
+                                labelId="demo-simple-select-standard-label"
+                                id="demo-simple-select-standard" 
+                                value={sort}
+                                onChange={handleChange}
+                                label="sort"
+                            >
+                                <MenuItem value="Date added">Date added</MenuItem>
+                                <MenuItem value="Name">Name</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </FlexBetween>
+                    <Divider />
+                    <Box 
+                        pt="1rem" 
+                        sx={{
+                            overflowY: 'auto', 
+                            overflowX: "auto",
+                            '&::-webkit-scrollbar': {
+                                width: '0.5em',
+                                height: '0.5em'
                             },
                             '&::-webkit-scrollbar-thumb': {
                                 backgroundColor: 'rgba(0,0,0,.3)',
-                            }, }}>
-                    {likedSongs? <Playlist key={likedSongs._id} playlist={likedSongs} isLikedSongs={true}/> : <CircularProgress />}
-                    {filteredPlaylists.map((playlist) => (
-                        <Playlist key={playlist?._id} playlist={playlist} isLikedSongs={false}/>
-                    ))}
-                </Box>
-            </> : <Box pt="1rem" height="53.5vh">
-                <Box sx={{backgroundColor: backgroundMedium, borderRadius: "0.75rem", padding: "1rem"}}>
-                    <Box>
-                        <Typography variant="h5" fontWeight="bold" color={backgroundSwitch} sx={{whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>
-                            Create your first playlist
-                        </Typography>
+                            },
+                            '&::-webkit-scrollbar-corner': {
+                                backgroundColor: 'transparent'
+                            }  
+                        }}
+                    >
+                        {likedSongs? <Playlist key={likedSongs._id} playlist={likedSongs} isLikedSongs={true}/> : <CircularProgress />}
+                        {filteredPlaylists.map((playlist) => (
+                            <Playlist key={playlist?._id} playlist={playlist} isLikedSongs={false}/>
+                        ))}
                     </Box>
-                    <Box p="1rem 0rem">
-                        <Typography variant="h6" color={backgroundSwitch} sx={{whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>
-                            You'll need to log in first
-                        </Typography>
+                </> : <Box pt="1rem" height="53.5vh">
+                    <Box sx={{backgroundColor: backgroundMedium, borderRadius: "0.75rem", padding: "1rem"}}>
+                        <Box>
+                            <Typography variant="h5" fontWeight="bold" color={backgroundSwitch} sx={{whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>
+                                Create your first playlist
+                            </Typography>
+                        </Box>
+                        <Box p="1rem 0rem">
+                            <Typography variant="h6" color={backgroundSwitch} sx={{whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>
+                                You'll need to log in first
+                            </Typography>
+                        </Box>
+                        <Box>
+                            <Button
+                                variant="contained"
+                                size="large"
+                                sx={{
+                                    textTransform: 'none',
+                                    borderRadius: 5,
+                                    backgroundColor: primary,
+                                    color: backgroundSwitch,
+                                    boxShadow: 'none',  
+                                }}
+                                onClick={() => navigate(`/login`)}
+                            >
+                                Create playlist
+                            </Button>
+                        </Box>
                     </Box>
-                    <Box>
-                        <Button
-                            variant="contained"
-                            size="large"
-                            sx={{
-                                textTransform: 'none',
-                                borderRadius: 5,
-                                backgroundColor: primary,
-                                color: backgroundSwitch,
-                                boxShadow: 'none',  
-                            }}
-                            onClick={() => navigate(`/login`)}
-                        >
-                            Create playlist
-                        </Button>
-                    </Box>
-                </Box>
-            </Box>}
-        </WidgetWrapper>
+                </Box>}
+            </WidgetWrapper>
+        </Box>
     );
 };
 

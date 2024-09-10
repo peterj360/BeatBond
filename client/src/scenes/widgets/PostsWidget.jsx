@@ -112,7 +112,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
     }
 
     return (
-        <Box mb={isNonMobileScreens ? "5rem" : "10rem"}>
+        <Box height="100%" mb="10rem">
             {posts.length > 0 ? posts.filter(post => post !== undefined && post !== null).map(
                 ({
                     _id,
@@ -136,10 +136,10 @@ const PostsWidget = ({ userId, isProfile = false }) => {
                     />
                 )
             ) : isLoading ? 
-                <WidgetWrapper height="77vh" sx={{ display: "flex",justifyContent: "center", alignItems: "center" }}>
+                <WidgetWrapper height="100%" sx={{ display: "flex",justifyContent: "center", alignItems: "center" }}>
                     <CircularProgress />
                 </WidgetWrapper> :
-                <WidgetWrapper height="77vh" mb="2rem">
+                <WidgetWrapper height="100%" mb="2rem" overflow="hidden">
                     {userId ? <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center">
                         <Box>
                             <Typography variant="h2" fontWeight="500" color={neutralDark} sx={{whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', padding: "0 1rem"}}>
@@ -178,7 +178,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
                         >
                             Done
                         </Button>
-                    </Box> : <Box display="flex" height="90%" flexDirection="column" alignItems="center" justifyContent="space-evenly" gap="1rem">
+                    </Box> : <Box display="flex" height="100%" flexDirection="column" alignItems="center" justifyContent="space-evenly" gap="1rem">
                         <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" gap="1rem">
                             <Box>
                                 <Typography variant="h2" fontWeight="500" color={neutralDark} sx={{whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>
@@ -237,11 +237,14 @@ const PostsWidget = ({ userId, isProfile = false }) => {
                         </Box>
                     </Box>}
             </WidgetWrapper>}
-            {hasMore && (
-                <Box display="flex" justifyContent="center">
+            {user && (hasMore ? (
+                <Box display="flex" justifyContent="center" pb={isNonMobileScreens ? "7rem" : "12rem"}>
                     <IconButton onClick={() => handleLoadMore()} >
                         <ExpandMore />
                     </IconButton>
+                </Box>
+            ) : <Box pb={isNonMobileScreens ? "4.5rem" : "10rem"}>
+
                 </Box>
             )}
         </Box>
