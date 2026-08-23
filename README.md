@@ -3,7 +3,7 @@
 BeatBond is a social media platform tailored for music lovers. Post and share your favourite songs, create playlists, and interact with other users who share your musical taste. BeatBond also integrates with Spotify API to bring you the latest charts!
 
 ## Live Application
-Experience the live app [here](https://beatbond.onrender.com)
+The live deployment is currently suspended and is no longer available to access
 
 ![Home Page](./server/public/assets/BeatBond-HomePage2.PNG)
 
